@@ -1,30 +1,61 @@
-# Colab-Cloud-Gaming
-UPDATED: Run Steam and Play Game on Google Colab (27/03/2026).
- + Steam is working properly now!!!
+# Colab-Cloud-Gaming (Enhanced)
 
-[![See in Demo](https://i.ibb.co/fY9gCWZ6/image-1.png)](https://youtube.com/playlist?list=PLaeZFgkd40LduqR6UHV2ZqiysVTXkPHUJ)
+Run Steam and Play Games on Google Colab — with full desktop environment.
+
+Based on [kmille36/Colab-Cloud-Gaming](https://github.com/kmille36/Colab-Cloud-Gaming).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kmille36/Colab-Cloud-Gaming/blob/main/ColabSteam.ipynb)
 
+## What's included
 
+| Component | Details |
+|-----------|---------|
+| **Desktop** | XFCE4 (lightweight, stable for streaming) |
+| **Browsers** | Google Chrome, Brave |
+| **Streaming** | Sunshine + Moonlight via Tailscale |
+| **Gaming** | Steam (via ColabSteam binary) |
+| **Audio** | PulseAudio |
+| **Tools** | htop, neofetch, nano, vim, curl, wget, unzip, 7z, net-tools |
+
+## Quick start
+
+The notebook handles everything. Just run the cells in order:
+
+1. *(Optional)* Audio cell to prevent Colab idle disconnect
+2. Region check
+3. Main cell — toggles for Drive mount and desktop environment
+
+Or manually:
+
+```bash
+wget -q https://github.com/kmille36/Colab-Cloud-Gaming/raw/refs/heads/main/setup-env.sh
+chmod +x setup-env.sh && ./setup-env.sh
+
+wget -q https://github.com/kmille36/Colab-Cloud-Gaming/raw/refs/heads/main/ColabSteam
+chmod +x ColabSteam && ./ColabSteam
 ```
-from google.colab import drive
-drive.mount('/content/drive')
-!wget -q https://github.com/kmille36/Colab-Cloud-Gaming/raw/refs/heads/main/ColabSteam
-!chmod +x ColabSteam
-!./ColabSteam
-```
+
+## setup-env.sh features
+
+- Auto-detects Ubuntu version (`lsb_release` / `/etc/os-release`)
+- Validates against known Colab versions (20.04 focal, 22.04 jammy, 24.04 noble)
+- Installs XFCE4 desktop + panel + terminal + file manager
+- Chrome via official `.deb`, Brave via official apt repo
+- PulseAudio for audio streaming
+- GPU detection via `nvidia-smi`
+- Colored output with progress steps
+
+## Requirements (client side)
+
+- [Tailscale](https://tailscale.com/) — VPN mesh to reach the Colab instance
+- [Moonlight](https://moonlight-stream.org/) — game streaming client
+- Sunshine web UI: `https://<tailscale-ip>:47990`
+
+## Notes
+
 - Control support in Moonlight OK (virtual gamepad and gamepad not available)
-- Sunshine web UI: https://tailscaleip:47990
-  
-Required Tailscale, Moonlight.
-
-- Backup features will save all your files from the current session to the drive, reducing wait time by 50–75% during your next use (only back up once if needed; ensure the drive has more space than the game size).
-  + Example: For large Steam/Epic or any large game that has a long download/install time and requires compiling shaders on first launch — do all the necessary steps until you can play the game — then take a backup to the drive so next time you can play instantly without waiting.
-- You can share a backup to another Drive account by sharing the download link with the target account, then creating a shortcut to the backup file in the target Drive (the backup.tar.gz file must not be inside any folder).
-
-- Always check the remaining usage time and disconnect when not in use (4-hour play time resets every 24 hours). Do not hide or switch the Colab tab to avoid disconnection.
-
-- Drive mount is optional, you can comment out the code with # if you don't want to use it (i added an Open in Colab link to make it easier to use).
-  
-If have any error re-run script again.
+- Drive mount is optional (toggle in notebook)
+- Backup saves session files to Drive, reducing next setup time by 50–75%
+- 4-hour play time resets every 24 hours; disconnect when not in use
+- Keep the Colab tab visible to avoid disconnection
+- If any error occurs, re-run the script
