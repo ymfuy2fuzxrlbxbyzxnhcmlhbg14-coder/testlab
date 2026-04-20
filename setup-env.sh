@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -uo pipefail
 
 # ============================================================================
 #  setup-env.sh  —  Entorno gráfico completo + acelerado por GPU para Colab
@@ -424,8 +424,9 @@ export XDG_SESSION_TYPE=x11
 export XDG_CURRENT_DESKTOP=XFCE
 export XDG_CONFIG_HOME=/root/.config
 
-dbus-launch --exit-with-session startxfce4 &>/dev/null &
-sleep 4
+nohup bash -c 'dbus-launch startxfce4' &>/dev/null &
+disown 2>/dev/null || true
+sleep 3
 
 if pgrep -f "xfce4-session" &>/dev/null; then
     log "Sesión XFCE4 corriendo con compositor habilitado."
@@ -560,3 +561,5 @@ log "Herramientas: ${TOOLS[*]}"
 echo ""
 log "Entorno listo. Ejecuta ./ColabSteam para Sunshine + Steam + Tailscale."
 echo ""
+
+exit 0
