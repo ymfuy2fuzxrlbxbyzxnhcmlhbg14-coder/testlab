@@ -2,9 +2,9 @@
 
 Run Steam and Play Games on Google Colab — with full desktop environment.
 
-Based on [kmille36/Colab-Cloud-Gaming](https://github.com/kmille36/Colab-Cloud-Gaming).
+Based on [ymfuy2fuzxrlbxbyzxnhcmlhbg14-coder/testlab](https://github.com/ymfuy2fuzxrlbxbyzxnhcmlhbg14-coder/testlab).
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kmille36/Colab-Cloud-Gaming/blob/main/ColabSteam.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ymfuy2fuzxrlbxbyzxnhcmlhbg14-coder/testlab/blob/main/ColabSteam.ipynb)
 
 ## What's included
 
@@ -28,10 +28,10 @@ The notebook handles everything. Just run the cells in order:
 Or manually:
 
 ```bash
-wget -q https://github.com/kmille36/Colab-Cloud-Gaming/raw/refs/heads/main/setup-env.sh
+wget -q https://github.com/ymfuy2fuzxrlbxbyzxnhcmlhbg14-coder/testlab/raw/refs/heads/main/setup-env.sh
 chmod +x setup-env.sh && ./setup-env.sh
 
-wget -q https://github.com/kmille36/Colab-Cloud-Gaming/raw/refs/heads/main/ColabSteam
+wget -q https://github.com/ymfuy2fuzxrlbxbyzxnhcmlhbg14-coder/testlab/raw/refs/heads/main/ColabSteam
 chmod +x ColabSteam && ./ColabSteam
 ```
 
